@@ -1,0 +1,22 @@
+version: '3.4'
+
+volumes:
+ datafiles:
+
+services:
+  classesapp.server:
+    image: ${DOCKER_REGISTRY-}classesappserver
+    depends_on:
+    - mysqlService
+
+    restart: always
+    build:
+      context: .
+      dockerfile: ClassesApp.Server/Dockerfile
+
+
+  mysqlService:
+    image: mysql:8.3.0
+    restart: always
+    volumes:
+     - datafiles:/var/lib/mysql

@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  classesapp.server:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+      - ConnectionStrings__DbContext=server=localhost;user=root;password=PCstore123$;database=courses_app
+    ports:
+      - "8080:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+
+  mysqlService:
+    environment:
+      MYSQL_ROOT_PASSWORD: PCStore123$  
